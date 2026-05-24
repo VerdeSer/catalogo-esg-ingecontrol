@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo de Servicios ESG — Ingecontrol</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --verde: #1B6B45;
+    --verde-claro: #E8F4EE;
+    --verde-medio: #2D8A5A;
+    --verde-oscuro: #0F3D26;
+    --gris: #F5F4F0;
+    --gris-borde: #E2E0D8;
+    --gris-texto: #6B6860;
+    --negro: #1A1917;
+    --blanco: #FAFAF8;
+    --ambar: #B86E00;
+    --ambar-bg: #FFF3DE;
+    --azul: #1A4A7A;
+    --azul-bg: #E8EFF8;
+    --coral: #8B3520;
+    --coral-bg: #FAECE7;
+    --purpura: #4A3A9E;
+    --purpura-bg: #EEEDFE;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--blanco);
+    color: var(--negro);
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--verde-oscuro);
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  header .logo-area h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  header .logo-area p {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+    margin-top: 4px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  .badge-header {
+    background: var(--verde-medio);
+    color: #fff;
+    font-size: 0.72rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+    align-self: center;
+  }
+
+  .controles {
+    background: var(--gris);
+    border-bottom: 1px solid var(--gris-borde);
+    padding: 1.25rem 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .controles input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 9px 14px;
+    border: 1px solid var(--gris-borde);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    background: #fff;
+    color: var(--negro);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .controles input[type="text"]:focus { border-color: var(--verde-medio); }
+  .controles input[type="text"]::placeholder { color: #aaa; }
+
+  .controles select {
+    padding: 9px 14px;
+    border: 1px solid var(--gris-borde);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    background: #fff;
+    color: var(--negro);
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .controles select:focus { border-color: var(--verde-medio); }
+
+  .contador {
+    padding: 0.75rem 2.5rem 0;
+    font-size: 0.8rem;
+    color: var(--gris-texto);
+    font-weight: 300;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    padding: 1rem 2.5rem 3rem;
+  }
+
+  .tarjeta {
+    background: #fff;
+    border: 1px solid var(--gris-borde);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: box-shadow 0.18s, border-color 0.18s, transform 0.18s;
+  }
+  .tarjeta:hover {
+    border-color: var(--verde-medio);
+    box-shadow: 0 4px 20px rgba(27,107,69,0.1);
+    transform: translateY(-2px);
+  }
+
+  .badges { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  .badge {
+    font-size: 0.7rem;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+  .badge-ambiental { background: var(--verde-claro); color: var(--verde); }
+  .badge-gobernanza { background: var(--azul-bg); color: var(--azul); }
+  .badge-social { background: var(--ambar-bg); color: var(--ambar); }
+  .badge-estrategia { background: var(--purpura-bg); color: var(--purpura); }
+  .badge-ejecucion { background: var(--coral-bg); color: var(--coral); }
+  .badge-evidencia { background: #F1EFE8; color: #5F5E5A; }
+
+  .macro {
+    font-size: 0.72rem;
+    color: var(--gris-texto);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 300;
+  }
+
+  .nombre {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--negro);
+    line-height: 1.3;
+    margin-top: 2px;
+  }
+
+  .descripcion {
+    font-size: 0.83rem;
+    color: var(--gris-texto);
+    line-height: 1.6;
+  }
+
+  .pregunta-box {
+    background: var(--verde-claro);
+    border-left: 2px solid var(--verde-medio);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 12px;
+    margin-top: auto;
+  }
+  .pregunta-label {
+    font-size: 0.65rem;
+    color: var(--verde);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .pregunta-texto {
+    font-size: 0.82rem;
+    color: var(--verde-oscuro);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .vacio {
+    display: none;
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--gris-texto);
+  }
+  .vacio svg { opacity: 0.3; margin-bottom: 1rem; }
+  .vacio p { font-size: 0.9rem; }
+
+  footer {
+    background: var(--gris);
+    border-top: 1px solid var(--gris-borde);
+    padding: 1.25rem 2.5rem;
+    font-size: 0.75rem;
+    color: var(--gris-texto);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 600px) {
+    header, .controles, .contador, .grid, footer { padding-left: 1rem; padding-right: 1rem; }
+    header .logo-area h1 { font-size: 1.4rem; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-area">
+    <h1>Catálogo ESG</h1>
+    <p>Portafolio de servicios sostenibles · Ingecontrol</p>
+  </div>
+  <span class="badge-header">Uso interno — equipo comercial</span>
+</header>
+
+<div class="controles">
+  <input type="text" id="buscar" placeholder="🔍  Busca por palabra clave, cliente, tema..." oninput="filtrar()">
+  <select id="esg" onchange="filtrar()">
+    <option value="">Todas las dimensiones</option>
+    <option value="Gobernanza">Gobernanza</option>
+    <option value="Ambiental">Ambiental</option>
+    <option value="Social">Social</option>
+  </select>
+  <select id="fase" onchange="filtrar()">
+    <option value="">Todas las fases</option>
+    <option value="Estrategia">Estrategia</option>
+    <option value="Ejecución">Ejecución</option>
+    <option value="Evidencia">Evidencia y verificación</option>
+  </select>
+</div>
+
+<p class="contador" id="contador"></p>
+
+<div class="grid" id="grid">
+  <div class="vacio" id="vacio">
+    <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <p>No se encontraron servicios con esos filtros.<br>Intenta con otras palabras clave.</p>
+  </div>
+</div>
+
+<footer>
+  <span>Ingecontrol · Línea de negocio sostenible</span>
+  <span id="footer-count"></span>
+</footer>
+
+<script>
+const servicios = [
+  {id:1, nombre:"Diagnóstico ESG", macro:"Ancla de entrada", desc:"Evaluación integral del estado ESG de la organización frente a marcos regulatorios, de mercado y buenas prácticas, identificando brechas, riesgos y oportunidades prioritarias.", pregunta:"¿Dónde está hoy mi organización en sostenibilidad y cuáles son las brechas críticas que debo cerrar primero para cumplir con reguladores, financiadores e inversionistas?", esg:"Gobernanza", fase:"Estrategia", kw:"diagnóstico línea base brechas regulación partida evaluación"},
+  {id:3, nombre:"Estrategia de sostenibilidad ESG", macro:"Ancla de entrada", desc:"Definición de la visión, objetivos y hoja de ruta ESG de la organización, alineada con su estrategia de negocio, riesgos críticos y contexto regulatorio.", pregunta:"¿Cómo traduzco la sostenibilidad en una estrategia ejecutable, alineada con mi negocio, que genere valor verificable y no se quede en discurso?", esg:"Gobernanza", fase:"Estrategia", kw:"estrategia hoja de ruta visión negocio gobierno corporativo"},
+  {id:2, nombre:"Análisis de materialidad ESG", macro:"Gobernanza ESG", desc:"Identificación y priorización de los temas ESG más relevantes para la organización, considerando impactos, riesgos y expectativas de grupos de interés internos y externos.", pregunta:"¿Cuáles son los temas ESG que más impactan mi negocio y mis grupos de interés?", esg:"Gobernanza", fase:"Estrategia", kw:"materialidad grupos interés priorización impacto inversión doble"},
+  {id:6, nombre:"Gestión del desempeño ambiental corporativo", macro:"Gobierno ambiental corporativo", desc:"Definición, seguimiento y mejora del desempeño ambiental de la organización mediante indicadores, metas y mecanismos de control para la toma de decisiones.", pregunta:"¿Cómo mido y gobierno el desempeño ambiental de toda mi organización con indicadores comparables y útiles para la dirección?", esg:"Ambiental", fase:"Estrategia", kw:"indicadores metas control desempeño ambiental dirección KPI"},
+  {id:7, nombre:"Gestión de riesgos ambientales y climáticos corporativos", macro:"Gobierno ambiental corporativo", desc:"Identificación, evaluación y gestión de riesgos ambientales y climáticos que pueden afectar la operación, finanzas, cumplimiento y reputación de la organización.", pregunta:"¿Qué riesgos ambientales y climáticos pueden afectar mi operación, mis finanzas y mi reputación, y cómo los integro a la gestión de riesgos corporativos?", esg:"Ambiental", fase:"Estrategia", kw:"riesgos físicos transición climáticos finanzas reputación TCFD"},
+  {id:8, nombre:"Sistemas de gestión ambiental (SGA)", macro:"Gobierno ambiental corporativo", desc:"Diseño, implementación y fortalecimiento de sistemas de gestión ambiental y estructuras de gobernanza que aseguren control, cumplimiento y mejora continua.", pregunta:"¿Qué necesito para cumplir ISO 14001 y gestionar mis obligaciones ambientales de forma sistemática?", esg:"Ambiental", fase:"Estrategia", kw:"ISO 14001 SGA cumplimiento mejora continua PHVA gobernanza ambiental"},
+  {id:9, nombre:"Gestión corporativa de residuos y recursos", macro:"Gobierno ambiental corporativo", desc:"Definición y operación de estrategias para la gestión eficiente de residuos y uso de recursos, alineadas con objetivos ambientales, regulatorios y de eficiencia.", pregunta:"¿Cómo convierto mis residuos y consumo de recursos en una palanca de eficiencia y cumplimiento?", esg:"Ambiental", fase:"Estrategia", kw:"residuos economía circular eficiencia recursos circularidad programas posconsumo"},
+  {id:10, nombre:"Inventario de emisiones GEI y huella de carbono", macro:"Transición Climática Corporativa", desc:"Cuantificación de emisiones de gases de efecto invernadero y huella de carbono de la organización o proyecto, conforme a estándares GHG Protocol e ISO 14064.", pregunta:"¿Cuánto emite realmente mi empresa o proyecto y dónde están las emisiones que debo gestionar primero?", esg:"Ambiental", fase:"Estrategia", kw:"GEI huella carbono emisiones alcance 1 2 3 GHG Protocol ISO 14064 inventario"},
+  {id:11, nombre:"Eficiencia energética y descarbonización", macro:"Transición Climática Corporativa", desc:"Identificación e implementación de oportunidades para optimizar el consumo energético y reducir emisiones, apoyando procesos de transición y descarbonización.", pregunta:"¿Dónde puedo reducir consumo energético y emisiones con retorno financiero claro?", esg:"Ambiental", fase:"Estrategia", kw:"energía descarbonización eficiencia costo abatimiento incentivos tributarios UPME"},
+  {id:12, nombre:"Gestión de mercados de carbono y compensaciones", macro:"Transición Climática Corporativa", desc:"Diseño y gestión de estrategias de compensación y participación en mercados de carbono voluntarios y regulados.", pregunta:"¿Debo compensar mis emisiones residuales? ¿Cómo participo en mercados de carbono sin asumir riesgos reputacionales?", esg:"Ambiental", fase:"Estrategia", kw:"mercado carbono créditos compensaciones VERRA Gold Standard voluntario regulado"},
+  {id:13, nombre:"Análisis de ciclo de vida (ACV) y huella de producto", macro:"Transición Climática Corporativa", desc:"Evaluación de impactos ambientales asociados al ciclo de vida de productos o servicios, desde materias primas hasta disposición final.", pregunta:"¿Cuál es el impacto ambiental real de mis productos y cómo lo comunico a clientes que ya lo están exigiendo?", esg:"Ambiental", fase:"Estrategia", kw:"ACV ciclo de vida producto EPD ISO 14040 14067 declaración ambiental"},
+  {id:15, nombre:"Gestión de biodiversidad y servicios ecosistémicos", macro:"Transición Climática Corporativa", desc:"Identificación, gestión y mitigación de impactos sobre biodiversidad y servicios ecosistémicos, integrando criterios ambientales y regulatorios.", pregunta:"¿Cómo gestiono mi impacto sobre biodiversidad de manera defendible ante reguladores, financiadores y comunidades?", esg:"Ambiental", fase:"Estrategia", kw:"biodiversidad ecosistemas TNFD naturaleza jerarquía mitigación restauración compensación"},
+  {id:16, nombre:"Gobernanza social y territorial", macro:"Gobierno social y territorial", desc:"Diseño de la estructura, políticas y reglas de gestión social y territorial para proyectos: roles, criterios de gestión de grupos de interés, mecanismos de quejas y lineamientos de relacionamiento.", pregunta:"¿Tengo el marco corporativo (roles, políticas y reglas) para que mis proyectos gestionen lo social de forma coherente y sin sorpresas?", esg:"Social", fase:"Estrategia", kw:"gobernanza social política relacionamiento comunidades grupos interés quejas escalamiento"},
+  {id:18, nombre:"Derechos humanos y debida diligencia", macro:"Gobierno social y territorial", desc:"Evaluación y gestión de riesgos en derechos humanos a lo largo de las operaciones y la cadena de valor, conforme a estándares internacionales.", pregunta:"¿Mi cadena de valor me expone a riesgos de derechos humanos que pueden costarme contratos, financiamiento o reputación?", esg:"Social", fase:"Estrategia", kw:"derechos humanos debida diligencia cadena valor compliance contratos financiamiento"},
+  {id:19, nombre:"Gestión de cadena de suministro sostenible", macro:"Gobierno social y territorial", desc:"Integración de criterios sociales, ambientales y éticos en la gestión de proveedores y contratistas, fortaleciendo el control de riesgos y cumplimiento.", pregunta:"¿Mis proveedores cumplen los estándares ESG que mis clientes y financiadores me están pidiendo?", esg:"Social", fase:"Estrategia", kw:"proveedores cadena suministro terceros contratistas criterios ESG compras sostenibles"},
+  {id:4, nombre:"Estructuración de proyectos ESG", macro:"Gestión de Proyectos ESG", desc:"Diseño técnico, ambiental, financiero y regulatorio de proyectos con enfoque ESG, asegurando viabilidad, coherencia estratégica y preparación para financiamiento.", pregunta:"¿Mi proyecto está suficientemente estructurado para ser financiable y ejecutable bajo estándares ESG?", esg:"Ambiental", fase:"Ejecución", kw:"estructuración proyectos financiamiento IFC Equator viabilidad taxonomías verdes"},
+  {id:5, nombre:"Incentivos tributarios para proyectos ESG", macro:"Gestión de Proyectos ESG", desc:"Identificación, estructuración y soporte técnico para la aplicación de incentivos tributarios y mecanismos fiscales asociados a proyectos ambientales y climáticos.", pregunta:"¿Qué incentivos tributarios puedo capturar con mis inversiones en mejoramiento ambiental y eficiencia energética?", esg:"Gobernanza", fase:"Ejecución", kw:"incentivos tributarios UPME ANLA Minciencias ObraXImpuestos beneficio fiscal ambiental"},
+  {id:20, nombre:"Licenciamiento ambiental y permisos", macro:"Gestión de Proyectos ESG", desc:"Gestión integral de permisos y licencias ambientales requeridos para el desarrollo de proyectos ante autoridades competentes.", pregunta:"¿Cómo aseguro que mi proyecto obtenga oportunamente las licencias y permisos ambientales sin cuellos de botella ante la autoridad?", esg:"Ambiental", fase:"Ejecución", kw:"licencia ambiental ANLA CAR permisos trámites autoridades"},
+  {id:21, nombre:"Cumplimiento ambiental y regulatorio (ICAs, PMA)", macro:"Gestión de Proyectos ESG", desc:"Gestión y verificación del cumplimiento de las obligaciones ambientales y regulatorias del proyecto: ICAs, PMA, compromisos de licencia y seguimiento ante autoridades.", pregunta:"¿Estoy cumpliendo realmente con los compromisos de mi licencia ambiental y con las obligaciones regulatorias del proyecto?", esg:"Ambiental", fase:"Ejecución", kw:"ICA PMA cumplimiento licencia obligaciones regulatorias seguimiento compromisos"},
+  {id:22, nombre:"Gestión de riesgos ambientales del proyecto", macro:"Gestión de Proyectos ESG", desc:"Identificación y control de riesgos ambientales específicos del proyecto durante sus fases de ejecución y operación.", pregunta:"¿Qué riesgos ambientales puede generar mi proyecto en ejecución y operación, y cómo los controlo antes de que se materialicen?", esg:"Ambiental", fase:"Ejecución", kw:"riesgos proyecto ejecución operación control ambiental valoración"},
+  {id:23, nombre:"Control y seguimiento ambiental en ejecución", macro:"Gestión de Proyectos ESG", desc:"Monitoreo en campo y seguimiento técnico del desempeño ambiental del proyecto durante la fase de ejecución.", pregunta:"¿Cómo verifico en campo que el desempeño ambiental del proyecto se ajusta a lo comprometido y detecto desviaciones a tiempo?", esg:"Ambiental", fase:"Ejecución", kw:"monitoreo campo interventoría supervisión ambiental reporte técnico desviaciones obra"},
+  {id:24, nombre:"Gestión ambiental del proyecto por componentes", macro:"Gestión de Proyectos ESG", desc:"Coordinación y control de los aspectos ambientales del proyecto por componentes o frentes de obra, asegurando coherencia y cumplimiento.", pregunta:"¿Cómo coordino la gestión ambiental entre los distintos frentes de obra para mantener coherencia y cumplimiento en todo el proyecto?", esg:"Ambiental", fase:"Ejecución", kw:"frentes obra multi-componente coordinación cronograma presupuesto articulación"},
+  {id:17, nombre:"Gestión social y territorial de proyectos", macro:"Gestión de Proyectos ESG", desc:"Planificación e implementación en territorio de la gestión social del proyecto: relacionamiento con comunidades, manejo de impactos, conflictos y compromisos.", pregunta:"¿Cómo gestiono en campo la relación con comunidades y actores del territorio para sostener la licencia social del proyecto?", esg:"Social", fase:"Ejecución", kw:"comunidades territorio licencia social compromisos relacionamiento conflictos participación"},
+  {id:25, nombre:"Gestión HSE", macro:"Gestión de Proyectos ESG", desc:"Gestión de salud, seguridad y ambiente en proyectos, orientada a la prevención de incidentes, cumplimiento normativo y control de riesgos operativos.", pregunta:"¿Cómo protejo a las personas en mis proyectos y operaciones, reduciendo accidentalidad y cumpliendo con estándares contractuales y normativos?", esg:"Social", fase:"Ejecución", kw:"HSE SST seguridad salud incidentes riesgos operativos obra prevención"},
+  {id:27, nombre:"Reporte de sostenibilidad / ESG", macro:"Medición, evidencia y verificación ESG", desc:"Elaboración de reportes de sostenibilidad y desempeño ESG alineados con estándares GRI, SASB e ISSB para inversionistas, financiadores y reguladores.", pregunta:"¿Cómo comunico de forma creíble y comparable mi desempeño ESG a inversionistas, financiadores y reguladores, sin caer en greenwashing?", esg:"Gobernanza", fase:"Evidencia", kw:"reporte sostenibilidad GRI SASB ISSB inversionistas greenwashing divulgación comunicación"},
+  {id:26, nombre:"Sistema de Gestión ESG — MRV", macro:"Sistema de Gestión ESG", desc:"Diseño e implementación del sistema de medición, reporte y verificación (MRV) que asegura trazabilidad, control y respaldo verificable del desempeño ESG.", pregunta:"¿Cuento con un sistema robusto que respalde con datos trazables y auditables todo lo que reporto y comprometo en sostenibilidad?", esg:"Gobernanza", fase:"Evidencia", kw:"MRV trazabilidad datos auditables medición reporte verificación sistema control evidencias"},
+  {id:28, nombre:"Aseguramiento / Auditoría ESG", macro:"Medición, evidencia y verificación ESG", desc:"Verificación independiente del desempeño y la información ESG reportada, fortaleciendo credibilidad y confianza ante inversionistas, financiadores y reguladores.", pregunta:"¿Cómo doy credibilidad independiente y verificable a la información ESG que reporto ante inversionistas, financiadores y reguladores?", esg:"Gobernanza", fase:"Evidencia", kw:"aseguramiento auditoría verificación ISAE 3000 3410 independiente credibilidad terceros"}
+];
+
+function badgeEsg(esg){
+  const m = {Gobernanza:'badge-gobernanza',Ambiental:'badge-ambiental',Social:'badge-social'};
+  return `<span class="badge ${m[esg]||''}">${esg}</span>`;
+}
+function badgeFase(fase){
+  const m = {'Estrategia':'badge-estrategia','Ejecución':'badge-ejecucion','Evidencia':'badge-evidencia'};
+  const label = fase==='Evidencia'?'Evidencia y verificación':fase;
+  return `<span class="badge ${m[fase]||''}">${label}</span>`;
+}
+
+function renderizar(lista){
+  const grid = document.getElementById('grid');
+  const vacio = document.getElementById('vacio');
+  const contador = document.getElementById('contador');
+  const footerCount = document.getElementById('footer-count');
+
+  const tarjetas = grid.querySelectorAll('.tarjeta');
+  tarjetas.forEach(t => t.remove());
+  vacio.style.display = 'none';
+
+  if(lista.length === 0){
+    vacio.style.display = 'block';
+    contador.textContent = '';
+    footerCount.textContent = '';
+    return;
+  }
+
+  contador.textContent = `${lista.length} servicio${lista.length!==1?'s':''} encontrado${lista.length!==1?'s':''}`;
+  footerCount.textContent = `${lista.length} de ${servicios.length} servicios`;
+
+  lista.forEach(s => {
+    const div = document.createElement('div');
+    div.className = 'tarjeta';
+    div.innerHTML = `
+      <div class="badges">${badgeEsg(s.esg)}${badgeFase(s.fase)}</div>
+      <div>
+        <p class="macro">${s.macro}</p>
+        <p class="nombre">${s.nombre}</p>
+      </div>
+      <p class="descripcion">${s.desc}</p>
+      <div class="pregunta-box">
+        <p class="pregunta-label">Pregunta de negocio del cliente</p>
+        <p class="pregunta-texto">${s.pregunta}</p>
+      </div>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+function filtrar(){
+  const txt = document.getElementById('buscar').value.toLowerCase().trim();
+  const esg = document.getElementById('esg').value;
+  const fase = document.getElementById('fase').value;
+  const resultado = servicios.filter(s => {
+    const hayTexto = !txt || (s.nombre+' '+s.desc+' '+s.pregunta+' '+s.kw+' '+s.macro).toLowerCase().includes(txt);
+    const hayEsg = !esg || s.esg === esg;
+    const hayFase = !fase || s.fase === fase || (fase === 'Evidencia' && s.fase === 'Evidencia');
+    return hayTexto && hayEsg && hayFase;
+  });
+  renderizar(resultado);
+}
+
+renderizar(servicios);
+document.getElementById('footer-count').textContent = `${servicios.length} de ${servicios.length} servicios`;
+</script>
+</body>
+</html>
